@@ -15,7 +15,7 @@ function LinkedList(){
         this.tail = node;
     }
     this.head = node;
-//     return this.head;
+    return this.head;
   }
 
   this.insertAtEnd = function(data){
@@ -58,7 +58,7 @@ function LinkedList(){
     let node = new Node(data);
     node.next = previousNode.next;
     previousNode.next = node;
-
+    return this.head;
   }
 
   this.removeAtPosition = function(index){
@@ -75,14 +75,50 @@ function LinkedList(){
       previousNode.next = previousNode.next.next
   }
 
+  this.reverseList = function(node){
+//     let prev = null;
+//     while(current !== null){
+//      let next = current.next;
+//       current.next = prev
+//       prev = current
+//       current = next;
+//     }
+//     this.head = prev;
+   
+//     return this.head;
+   
+        if(!node.next) {
+          this.head = node;
+          return
+        }
+       this.reverseList(node.next);
+//         let temp = node.next;
+        node.next.next = node;
+        node.next = null;
+    return this.head
+  }
+
+  this.print = function(head){
+    if(head === null) return
+    console.log(head.value)
+    this.print(head.next)
+  }
+
+  this.reversePrint = function(head){
+    if(head === null) {
+      return
+    }
+    this.reversePrint(head.next)
+    console.log(head.value)
+    return head;
+  }
 
 }
 
-
-
-
 let list = new LinkedList();
-list.insertAtBeginning(5);
-list.insertAtBeginning(4);
-list.insertAtPosition(2, 1)
-list.removeAtPosition(2)
+
+list.insertAtBeginning(3);
+list.insertAtBeginning(2);
+list.insertAtBeginning(1)
+
+list.reversePrint(list.head)
