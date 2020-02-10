@@ -1,5 +1,5 @@
 // Stack datastructure implementation]
-function Stack(size){
+function Stack(){
   this.items = []
   
   this.push = function(item){

@@ -1,26 +1,26 @@
 // Stack datastructure implementation]
 function Stack(size){
   this.items = []
-  
+
   this.push = function(item){
     this.items.push(item)
   }
-  
+
   this.pop = function(){
     if(this.items.length === 0) {
         return "Nothing to pop";
     }
     this.items.pop();
   }
-  
+
   this.top = function(){
     return this.items[this.items.length - 1];
   }
-  
+
   this.isEmpty = function(){
     return this.items.length === 0;
   }
-  
+
   this.printStack = function(){
     let str = "";
     for(let i = 0; i< this.items.length; i++){
