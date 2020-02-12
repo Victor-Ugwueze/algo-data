@@ -61,14 +61,52 @@ function BinarySearchTree(){
   }
   
   this.remove = function(data){
-   
+    const removeNode = (node, value) => {
+      if(node == null) return null;
+      else if(value < node.data){
+        node.left = removeNode(node.left, value)
+        return node;
+      }
+      else if(value > node.data){
+        node.right = removeNode(node.right, value)
+        return node;
+      } else {
+        if(node.left == null && node.right == null) {
+          node = null;
+          return node;
+        }
+        if(node.left == null) return node.right;
+        if(node.right == null) return node.left;
+        let currNode = node.right;
+        while(currNode.left !== null){
+          currNode = currNode.left;
+        }
+        node.data = currNode.data
+        node.right = removeNode(node.right, currNode.data)
+      }
+      
+    }
+    this.root = removeNode(this.root, data)
+    return this.root;
+  }
+  
+  this.findMinNode = function(){
+    const findMin = node => {
+      if(node == null) throw Error("Tree is empty")
+      if(node.left == null) return node;
+      return findMin(node.left)
+    }
+    return findMin(this.root)
   }
 }
 
 let bst = new BinarySearchTree()
 
 bst.insert(10)
-bst.insert(2)
+bst.insert(30)
 bst.insert(20)
-console.log(bst.search(bst.root, 1))
+bst.insert(15)
+bst.insert(100)
+bst.remove(20)
+console.log(bst.root)
 

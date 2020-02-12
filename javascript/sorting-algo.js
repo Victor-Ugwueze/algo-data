@@ -23,12 +23,12 @@ const bubbleSort = arr => {
 const insertionSort = arr => {
   for(let i = 1; i < arr.length; i++ ){
     let j = i;
+    let value = arr[i]
     while(j >0 && arr[j- 1] > arr[j]) {
-      let key = arr[j];
       arr[j] = arr[j-1];
-      arr[j -1] = key;
       j--;
     }
+    arr[j] = value;
   }
   return arr;
 }
